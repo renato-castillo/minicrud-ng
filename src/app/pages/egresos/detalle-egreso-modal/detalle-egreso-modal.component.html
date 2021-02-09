@@ -1,0 +1,51 @@
+<div class="modal modal-primary fade" id="modal-info">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Detalles del egreso</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-12 table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Descripción</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Importe</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let detalle of egreso.detalles; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{detalle.descripcion}}</td>
+                        <td>{{detalle.cantidad }}</td>
+                        <td>S/. {{detalle.precio | number : '1.2-2' }}</td>
+                        <td>S/. {{detalle.importe | number : '1.2-2' }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                    <!-- /.box-body -->
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <b>Total:</b> S/ {{egreso.total | number : '1.2-2'}}
+              </div>
+              <div class="col-xs-12">
+                <b>Cantidad:</b> {{cantidad}}
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>

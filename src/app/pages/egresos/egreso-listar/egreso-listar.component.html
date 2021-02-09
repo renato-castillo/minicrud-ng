@@ -1,0 +1,48 @@
+<section class="content-header">
+    <h1>
+      Egresos
+    </h1>
+
+    <ol class="breadcrumb">
+      <button class="btn btn-info" type="button" [routerLink]="'/dashboard/egresos/registrar'">Registrar</button>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Total</th>
+                <th>Fecha de creación</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let egreso of egresos; let i = index">
+                <td>{{i+1}}</td>
+                <td>S/. {{egreso.total | number : '1.2-2'}}</td>
+                <td>{{egreso.fechaCreacion | date }}</td>
+                <td>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-info btn-circle" (click)="verDetalle(egreso)" data-toggle="modal" data-target="#modal-info">
+                        <i class="text-light fa  fa-bars"></i>
+                    </button>
+                    <button type="button" class="btn btn-warning btn-circle" [routerLink]="['editar', egreso.idEgreso]">
+                        <i class="text-light fa fa-edit"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-circle">
+                    <i class="text-light fa fa-trash"></i>
+                  </button>
+                </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+            </div>
+            <!-- /.box-body -->
+    </div>
+</section>
+
+<app-detalle-egreso-modal *ngIf="egreso && cantidadTotal !== 0" [egreso]="egreso" [cantidad]="cantidadTotal"></app-detalle-egreso-modal>

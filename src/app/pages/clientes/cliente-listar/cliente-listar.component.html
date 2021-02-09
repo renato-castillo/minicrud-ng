@@ -1,0 +1,45 @@
+<section class="content-header">
+    <h1>
+      Clientes
+      <!--<small>Bie</small>-->
+    </h1>
+
+    <ol class="breadcrumb">
+      <button class="btn btn-info" type="button" [routerLink]="'/dashboard/clientes/registrar'">Registrar</button>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of clientes; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{cliente.nombres}}</td>
+                <td>{{cliente.apellidos}}</td>
+                <td>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-warning btn-circle" [routerLink]="['editar', cliente.idCliente]">
+                        <i class="text-light fa fa-edit"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-circle" (click)="anular(cliente)">
+                    <i class="text-light fa fa-trash"></i>
+                  </button>
+                </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+</section>
