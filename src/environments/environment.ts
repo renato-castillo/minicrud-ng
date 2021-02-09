@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  HOST: 'http://localhost:8085'
+  HOST: 'https://ng-minicrud.herokuapp.com/',
 };
 
 /*
