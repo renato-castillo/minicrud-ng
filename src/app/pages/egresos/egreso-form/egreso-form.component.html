@@ -1,0 +1,76 @@
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    {{title}}
+                </div>
+                <div class="panel-body">
+                    <form role="form" [formGroup]="form" (ngSubmit)="guardar()">
+                        <div class="form-group row text-center" [formGroup]="detalleForm">
+                            <div class="col-xs-12 col-md-4">
+                                <label for="nombres">Descripción</label>
+                                <input type="text" class="form-control" id="nombres" formControlName="descripcion">
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <label for="precio">Precio</label>
+                                <input type="number" class="form-control" id="precio" formControlName="precio">
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <label for="cantidad">Cantidad</label>
+                                <input type="number" class="form-control" id="cantidad" formControlName="cantidad">
+                            </div>
+                            <div class="col-xs-12" style="margin-top: 20px">
+                                <button type="button" class="btn btn-info"
+                                    [disabled]="!detalleForm.valid" (click)="agregarDetalle()">Agregar</button>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="detalles.controls.length > 0">
+                            <div class="col-xs-12 table-responsive">
+                              <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th>#</th>
+                                    <th>Descripcion</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                  </tr>
+                                </thead>
+                                <tbody formArrayName="detalles">
+                                  <tr *ngFor="let control of detalles.controls; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{control.value.descripcion}}</td>
+                                    <td>{{control.value.precio | number : '1.2-2'}}</td>
+                                    <td>{{control.value.cantidad}}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-danger btn-circle" (click)="borrarDetalle(i)">
+                                            <i class="text-light fa fa-trash"></i>
+                                          </button>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                  <tr *ngIf="total !== 0">
+                                      <td><b>Total:</b> {{total | number : '1.2-2'}}</td>
+                                  </tr>
+                                  <tr *ngIf="cantidadTotal !== 0">
+                                    <td><b>Cantidad total:</b> {{cantidadTotal}}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                                </div>
+                                <!-- /.box-body -->
+                        </div>
+                        <div class="form-group row text-center">
+                            <div class="col-xs-12 justify-content-between">
+                                <button style="margin-right: 4px" type="button" class="btn btn-danger btn-md"
+                                    routerLink="/dashboard/egresos">Cancelar</button>
+                                <button type="submit" class="btn btn-success btn-md">Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
